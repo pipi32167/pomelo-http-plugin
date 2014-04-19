@@ -1,7 +1,7 @@
 {
   "name": "pomelo-http-plugin",
-  "version": "0.0.7",
-  "description": "",
+  "version": "0.0.8",
+  "description": "Wrap express module as pomelo http plugin.",
   "main": "index.js",
   "private": false,
   "homepage": "https://github.com/pipi32167/pomelo-http-plugin",
