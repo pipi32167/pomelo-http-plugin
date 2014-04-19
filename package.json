@@ -3,9 +3,27 @@
   "version": "0.0.7",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": false,
+  "homepage": "https://github.com/pipi32167/pomelo-http-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pipi32167/pomelo-http-plugin.git"
   },
+  "bugs": {
+    "url": "https://github.com/pipi32167/pomelo-http-plugin/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/pipi32167/pomelo-http-plugin#license"
+    }
+  ],
+  "keywords": [
+    "pomelo",
+    "express",
+    "http",
+    "plugin"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
