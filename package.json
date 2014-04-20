@@ -1,6 +1,6 @@
 {
   "name": "pomelo-http-plugin",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Wrap express module as pomelo http plugin.",
   "main": "index.js",
   "private": false,
@@ -24,8 +24,8 @@
     "http",
     "plugin"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Million Young",
+  "license": "MIT",
   "dependencies": {
     "express": "~3.4.8"
   }
