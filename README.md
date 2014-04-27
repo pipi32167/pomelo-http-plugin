@@ -42,6 +42,7 @@ For example, your http server name is gamehttp.
 4. Change app.js
 
     var httpPlugin = require('pomelo-http-plugin');
+    var path = require('path');
 
     app.loadConfig('httpConfig', path.join(app.getBase(), 'config/http.json'));
     app.use(httpPlugin, {
