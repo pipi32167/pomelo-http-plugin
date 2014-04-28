@@ -1,6 +1,6 @@
 {
   "name": "pomelo-http-plugin",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Wrap express module as pomelo http plugin.",
   "main": "index.js",
   "private": false,
