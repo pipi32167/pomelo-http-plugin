@@ -5,60 +5,117 @@ pomelo-http-plugin
 
 ##How to use pomelo-http-plugin:
 
+###Single server
+
 For example, your http server name is gamehttp.
 
 1. Create config/http.json, configure your http server
-
-    {
-      "development": {
-        "gamehttp": {
-          "host": "127.0.0.1",
-          "port": 3001
-        }
-      },
-      "production": {
-        "gamehttp": {
-          "host": "127.0.0.1",
-          "port": 3001
-        }
-      }
+```js
+{
+  "development": {
+    "gamehttp": {
+      "host": "127.0.0.1",
+      "port": 3001
     }
+  }
+}
+```
 
 2. Change servers.json, add gamehttp config
-
-    "http": [{
-      "id": "gamehttp",
-      "port": 3002,
-      "host": "127.0.0.1"
-    }]
+```js
+"gamehttp": [{
+  "id": "gamehttp",
+  "port": 3002,
+  "host": "127.0.0.1"
+}]
+```
 
 3. Change adminServer.json, add server type config
-
-    {
-      "type": "http",
-      "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
-    }
+```js
+{
+  "type": "gamehttp",
+  "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
+}
+```
 
 4. Change app.js
-
-    var httpPlugin = require('pomelo-http-plugin');
-    var path = require('path');
-
-    app.loadConfig('httpConfig', path.join(app.getBase(), 'config/http.json'));
-    app.use(httpPlugin, {
-      http: app.get('httpConfig')[app.getServerId()]
-    });
+```js
+var httpPlugin = require('pomelo-http-plugin');
+var path = require('path');
+app.configure('development', 'gamehttp', function() {
+  app.loadConfig('httpConfig', path.join(app.getBase(), 'config/http.json'));
+  app.use(httpPlugin, {
+    http: app.get('httpConfig')[app.getServerId()]
+  });
+});
+```
 
 5. Create app/servers/gamehttp/route/testRoute.js
+```js
+module.exports = function(app, http) {
 
-    module.exports = function(app, http) {
-
-      http.get('/test', function(req, res) {
-        res.send('test success')
-      });
-    };
+  http.get('/test', function(req, res) {
+    res.send('test success')
+  });
+};
+```
 
 6. Run your app and open url http://127.0.0.1:3001/test
+
+###Server cluster
+
+This example, we configure our http server as a server cluster, just have a little difference with the before example.
+
+1. Create config/http.json, configure your http server
+```js
+{
+  "development": {
+    "gamehttp": {
+      "isCluster": true,
+      "host": "127.0.0.1",
+      "port": "3001++"
+    }
+  }
+}
+```
+2. Change servers.json, add gamehttp config
+```js
+"gamehttp": [{
+  "id": "gamehttp",
+  "clusterCount": 2,
+  "port": "3101++",
+  "host": "127.0.0.1"
+}]
+```
+3. Change adminServer.json, add server type config
+```js
+{
+  "type": "gamehttp",
+  "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
+}
+```
+4. Change app.js
+```js
+var httpPlugin = require('pomelo-http-plugin');
+var path = require('path');
+
+app.configure('development', 'gamehttp', function() {
+  app.loadConfig('httpConfig', path.join(app.getBase(), 'config/http.json'));
+  app.use(httpPlugin, {
+    http: app.get('httpConfig')[app.getServerType()]
+  });
+});
+```
+5. Create app/servers/gamehttp/route/testRoute.js
+```js
+module.exports = function(app, http) {
+
+  http.get('/test', function(req, res) {
+    res.send('test success')
+  });
+};
+```
+6. Run your app and open urls: http://127.0.0.1:3001/test, http://127.0.0.1:3002/test
 
 ## License
 
