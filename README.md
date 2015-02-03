@@ -111,6 +111,7 @@ module.exports = function(app, http) {
 };
 ```
 #####6. Run your app and open urls: http://127.0.0.1:3001/test, http://127.0.0.1:3002/test
+#####7. Optional, you can use nginx or any other similar program to reverse proxy the http port, just google it!
 
 ## License
 
