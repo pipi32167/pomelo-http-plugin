@@ -20,6 +20,20 @@ For example, your http server name is gamehttp.
   }
 }
 ```
+If you want to support https, you should add more keys to config/http.json
+```js
+{
+  "development": {
+    "gamehttp": {
+      "useSSL": true,
+      "keyFile": "config/key.pem",
+      "certFile": "config/cert.pem",
+      "host": "127.0.0.1",
+      "port": 3001
+    }
+  }
+}
+```
 #####2. Change servers.json, add gamehttp config
 ```js
 "gamehttp": [{
@@ -73,6 +87,21 @@ This example, we configure our http server as a server cluster, just have a litt
   }
 }
 ```
+If you want to support https, you should add more keys to config/http.json
+```js
+{
+  "development": {
+    "gamehttp": {
+      "useSSL": true,
+      "keyFile": "config/key.pem",
+      "certFile": "config/cert.pem",
+      "isCluster": true,
+      "host": "127.0.0.1",
+      "port": "3001++"
+    }
+  }
+}
+```
 #####2. Change servers.json, add gamehttp config
 ```js
 "gamehttp": [{
@@ -112,6 +141,7 @@ module.exports = function(app, http) {
 ```
 #####6. Run your app and open urls: http://127.0.0.1:3001/test, http://127.0.0.1:3002/test
 #####7. Optional, you can use nginx or any other similar program to reverse proxy the http port, just google it!
+
 
 ## License
 
