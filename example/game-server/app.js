@@ -13,7 +13,10 @@ app.set('name', 'example');
 app.configure('development', 'gamehttp', function() {
 	app.loadConfig('httpConfig', path.join(app.getBase(), 'config/http.json'));
 	app.use(httpPlugin, {
-		http: app.get('httpConfig')[app.getServerId()]
+		http: app.get('httpConfig').gamehttp,
+	});
+	app.use(httpPlugin, {
+		http: app.get('httpConfig').gamehttps,
 	});
 });
 // start app
