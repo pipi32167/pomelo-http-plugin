@@ -1,9 +1,18 @@
 'use strict';
 
-module.exports = function(app, http) {
+module.exports = function(app, http, plugin) {
 
-  http.get('/test', function(req, res) {
-  	console.log(req.body);
-    res.send('test success')
-  });
+	if (plugin.useSSL) {
+
+		http.get('/testHttps', function(req, res) {
+			console.log(req.body);
+			res.send('test success')
+		});
+	} else {
+
+		http.get('/testHttp', function(req, res) {
+			console.log(req.body);
+			res.send('test success')
+		});
+	}
 };
