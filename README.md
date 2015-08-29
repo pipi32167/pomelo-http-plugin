@@ -3,6 +3,10 @@ pomelo-http-plugin
 
 Wrap express module as pomelo http plugin.
 
+
+[wiki][]
+[wiki]: https://github.com/pipi32167/pomelo-http-plugin/wiki
+
 ###How to use pomelo-http-plugin:
 
 ###Single server
