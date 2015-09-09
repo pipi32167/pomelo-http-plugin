@@ -10,10 +10,10 @@ module.exports = {
 
 	filter: function(filter) {
 		if (filter.before) {
-			this.beforeFilters.push(filter.before);
+			this.beforeFilters.push(filter.before.bind(filter));
 		}
 		if (filter.after) {
-			this.afterFilters.push(filter.after);
+			this.afterFilters.push(filter.after.bind(filter));
 		}
 	},
 
